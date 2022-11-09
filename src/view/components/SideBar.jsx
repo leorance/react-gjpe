@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import Tabel from "./Tabel";
 import React from "react";
+import Tanggal from "./Tanggal";
 
 function SideBar() {
   return (
@@ -28,10 +29,20 @@ function SideBar() {
         <Col sm={9}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-              <center>
-                <h2>Sesi I</h2>
-                <Tabel />
-              </center>
+              <h2>Sesi I</h2>
+              <Tabel />
+            </Tab.Pane>
+          </Tab.Content>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">
+              <h2>Sesi II</h2>
+              <Tabel />
+            </Tab.Pane>
+          </Tab.Content>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">
+              <h2>Sesi III</h2>
+              <Tabel />
             </Tab.Pane>
           </Tab.Content>
         </Col>

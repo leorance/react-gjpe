@@ -21,6 +21,7 @@ function Navigation() {
                 Generate Pelayanan
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link href="/add-data">Add Data</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

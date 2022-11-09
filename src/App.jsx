@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
-import Kelasa from "./pages/Kelas-a";
+import Navigation from "./view/components/Navigation";
+import Home from "./view/pages/Home";
+import Kelasa from "./view/pages/Kelas-a";
+import Addata from "./view/pages/add-data";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/kelas-a" element={<Kelasa />}></Route>
+          <Route path="/add-data" element={<Addata />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

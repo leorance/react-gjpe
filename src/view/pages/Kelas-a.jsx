@@ -1,6 +1,6 @@
 import SideBar from "../components/SideBar";
 
-function Pelayanan() {
+function kelasA() {
   return (
     <div className="App">
       <div className="container">
@@ -11,4 +11,4 @@ function Pelayanan() {
   );
 }
 
-export default Pelayanan;
+export default kelasA;
