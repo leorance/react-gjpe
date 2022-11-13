@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import moment from "moment";
 import momentRecur from "moment-recur";
 // import Nav from "react-bootstrap/Nav";
+import Tanggal from "../components/Tanggal";
 
 function Home() {
   return (
@@ -15,7 +16,7 @@ function Home() {
             <h2>Dashboard Pelayanan</h2>
           </Col>
           <Col md={{ span: 0, offset: 4 }}>
-            <h2>{moment().isoWeekday(7).format("dddd, DD MMM YYYY")}</h2>
+            <h2>{moment().isoWeekday(7).format("dddd, DD MMM YYYY")} </h2>
           </Col>
         </Row>
         <br />

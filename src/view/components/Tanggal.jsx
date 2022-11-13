@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import momentRecur from "moment-recur";
+import { getDefaultNormalizer } from "@testing-library/react";
 
 const Tanggal = (props) => {
   let index = props.index;
@@ -8,11 +9,8 @@ const Tanggal = (props) => {
   let interval = moment(y).recur().every(["sun"]).daysOfWeek();
   let x = interval.next(4, "YYYY-MM-DD");
   let conv = x[index];
-  return (
-    <>
-      <p>{conv}</p>
-    </>
-  );
+  // console.log(conv);
+  return conv;
 };
 // function Tool(props) {
 //   const name = props.name;

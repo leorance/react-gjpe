@@ -1,104 +1,101 @@
 import axios from "axios";
-import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
+import React, { useEffect, useState } from "react";
+// import Button from "react-bootstrap/Button";
 import Tanggal from "../../components/Tanggal";
 import moment from "moment";
+// import ReactDomServer from "react-dom";
 
-export class FormDataDiri extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      persons: [],
-      id_pel: "",
-      id_nama: "",
-      id_kelas: "",
-      id_talent: "",
-      tanggal_pelayaan: "",
-    };
-  }
-  changeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+function FormDataPelayanan(props) {
+  const [data, setData] = useState([]);
+
+  // baseUrl = "http://localhost/api";
+
+  const apiCall = async () => {
+    const url = "http://localhost/api";
+    const req = axios.get(url);
+    const res = await req;
+    setData({
+      user: res.data.data_uname,
+      talent: res.data.data_talents,
+      class: res.data.data_class,
+      pelayanan: res.data.data_pelayanan,
+    });
   };
+  useEffect(() => {
+    apiCall();
+  }, []);
 
-  submitHandler = (e) => {
-    let y = moment().endOf("month");
-    let interval = moment(y).recur().every(["sun"]).daysOfWeek();
-    let x = interval.next(4, "YYYY-MM-DD");
-    e.preventDefault();
-    let url =
-      "http://localhost/api/pelayanan/add?id_pel=PEL1&id_nama=U1&id_talent=T1&id_kelas=CA11&tanggal_pelayanan=" +
-      x[0];
-    console.log(url);
-    axios
-      .post(url, this.state)
-      .then((res) => {
-        if (res.status == 201) {
-          alert("Data added successfully!");
-        } else {
-          alert("Insert data failed!");
-          console.log(res);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  render() {
-    const { id_pel, id_nama, id_kelas, id_talent, tanggal_pelayaan } =
-      this.state;
-    const v1 = "PEL1";
-    const v2 = "USR1";
-    const v3 = "TAL1";
-    const v4 = "CA11";
-    // let v5 = x[0];
-    return (
-      <>
-        <form onSubmit={this.submitHandler} className="form-group">
-          <div>
-            <input
-              type="hidden"
-              name="id_pel"
-              className="form-control"
-              value={v1}
-              onChange={this.changeHandler}
-            />
-            <input
-              type="hidden"
-              name="id_nama"
-              className="form-control"
-              value={v2}
-              onChange={this.changeHandler}
-            />
-            <input
-              type="hidden"
-              name="id_talent"
-              className="form-control"
-              value={v3}
-              onChange={this.changeHandler}
-            />
-            <input
-              type="hidden"
-              name="id_kelas"
-              className="form-control"
-              value={v4}
-              onChange={this.changeHandler}
-            />
-            <input
-              type="hidden"
-              name="tanggal_pelayanan"
-              className="form-control"
-              value={v4}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
+  // changeHandler = (e) => {
+  //   useState({ [e.target.name]: e.target.value });
+  // };
+  // submitHandler = (e) => {
+  //   let y = moment().endOf("month");
+  //   let interval = moment(y).recur().every(["sun"]).daysOfWeek();
+  //   // let x = interval.next(4, "YYYY-MM-DD");
+  //   e.preventDefault();
+  //   // let url = "http://localhost/api/pelayanan/add";
+  //   // console.log(url->toJson());
+  // };
+  return (
+    <>
+      {data.pelayanan?.map((v_dp) =>
+        v_dp.id_pel === props.id_pel ? (
+          <form className="form-group">
+            <div>
+              <label htmlFor="id_pel">Masukkan ID Pelayanan</label>
+              <input
+                type="disable"
+                name="id_pel"
+                className="form-control mb-2"
+                value={v_dp.id_pel}
+                disabled
+                readOnly
+                // onChange={this.changeHandler}
+              />
+              <label htmlFor="id_nama">Masukkan User ID</label>
+              <input
+                type="text"
+                name="id_nama"
+                className="form-control mb-2"
+                value={v_dp.id_nama}
+                // onChange={this.changeHandler}
+              />
+              <label htmlFor="id_talent">Masukkan Talent ID</label>
+              <input
+                type="text"
+                name="id_talent"
+                className="form-control mb-2"
+                value={v_dp.id_talent}
+                // onChange={this.changeHandler}
+              />
+              <label htmlFor="id_kelas">Masukkan ID Kelas</label>
+              <input
+                type="text"
+                name="id_kelas"
+                className="form-control mb-2"
+                value={v_dp.id_kelas}
+                // onChange={this.changeHandler}
+              />
+              <label htmlFor="tamggal_pelayanan">
+                Masukkan tanggal pelayanan
+              </label>
+              <input
+                type="date"
+                name="tanggal_pelayanan"
+                className="form-control mb-2"
+                value={v_dp.tanggal_pelayanan}
+                // onChange={this.changeHandler}
+              />
+            </div>
+            {/* <button type="submit" className="btn btn-primary">
             Masukkan data!
-          </button>
-        </form>
-      </>
-    );
-  }
+          </button> */}
+          </form>
+        ) : (
+          ""
+        )
+      )}
+    </>
+  );
 }
-
-export default FormDataDiri;
+export default FormDataPelayanan;

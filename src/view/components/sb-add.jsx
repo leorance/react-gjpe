@@ -25,7 +25,7 @@ function SideBar() {
               <Nav.Link eventKey="third">Data Diri</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="fourth">Tes</Nav.Link>
+              <Nav.Link eventKey="fourth">Data Pelayan</Nav.Link>
             </Nav.Item>
           </Nav>
         </Col>

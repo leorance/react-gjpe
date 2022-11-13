@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DataTable from "react-data-table-component";
 import { Table } from "react-bootstrap";
-
-function Tabel() {
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Forms from "../pages/FormRegister/FormRegister-D";
+function Tabel({ v_cla, vt, tugas }) {
   const [data, setData] = useState([]);
 
+  // Modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const count = 0;
   const apiCall = async () => {
     const url = "http://localhost/api";
     const req = axios.get(url);
@@ -21,11 +27,7 @@ function Tabel() {
   useEffect(() => {
     apiCall();
   }, []);
-
-  // function x (props){
-  //   {data.pelayanan?.map((v_dp) =>
-  // }
-  let simpen = null;
+  // console.log(vt);
   return (
     <>
       <Table striped bordered hover>
@@ -41,8 +43,7 @@ function Tabel() {
         <tbody>
           {/* looping data pelayanan */}
           {data.pelayanan?.map((v_dp) =>
-            v_dp.tanggal_pelayanan === "2022-10-02" &&
-            v_dp.id_kelas === "CLA1" ? (
+            v_dp.tanggal_pelayanan === vt && v_dp.id_kelas === v_cla ? (
               <tr key={v_dp.id_pel}>
                 <td>
                   {data.user?.map((v_du) =>
@@ -68,7 +69,28 @@ function Tabel() {
                   )}
                 </td>
                 <td>{v_dp.tanggal_pelayanan}</td>
-                <td>update || delete</td>
+                <td>
+                  <>
+                    <Button variant="outline-warning" onClick={handleShow}>
+                      Update
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Update data</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>{<Forms id_pel={v_dp.id_pel} />}</Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                          Save Changes
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  </>
+                </td>
               </tr>
             ) : (
               ""

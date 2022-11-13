@@ -13,9 +13,9 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link href="/">Dashboard</Nav.Link>
             <NavDropdown title="Pelayanan" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="/kelas-a">Kelas A</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Kelas B</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Kelas C</NavDropdown.Item>
+              <NavDropdown.Item href="/kelas/a">Kelas A</NavDropdown.Item>
+              <NavDropdown.Item href="/kelas/b">Kelas B</NavDropdown.Item>
+              <NavDropdown.Item href="/kelas/c">Kelas C</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
                 Generate Pelayanan
