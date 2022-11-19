@@ -17,7 +17,7 @@ function Navigation() {
               <NavDropdown.Item href="/kelas/b">Kelas B</NavDropdown.Item>
               <NavDropdown.Item href="/kelas/c">Kelas C</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
+              <NavDropdown.Item href="http://localhost/generate">
                 Generate Pelayanan
               </NavDropdown.Item>
             </NavDropdown>
